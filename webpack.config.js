@@ -100,6 +100,16 @@ const config = {
   ],
 };
 
+if (config.mode === 'development') {
+  config.plugins = (config.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"',
+      },
+    }),
+  ]);
+}
+
 if (config.mode === 'production') {
   config.plugins = (config.plugins || []).concat([
     new webpack.DefinePlugin({
